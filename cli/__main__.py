@@ -1,6 +1,11 @@
 import asyncio
 import time
+import sys
+import os
 from typing import List, Dict
+
+# Add project root to path for relative imports
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from cli.cli_parser_new import parse_arguments
 from config.blocking_ips import load_blocking_ip_ranges, load_custom_blocking_ips
