@@ -4,26 +4,26 @@ from data.models import QueryResult, DomainCategory, PerformanceStats, BlockingS
 
 
 def calculate_performance_stats(query_results: List[QueryResult]) -> PerformanceStats:
-"""
-Calculates min, max, median, and average latency for a given set of resolved queries.
-Only considers queries with status 'Resolved' and non-null latency.
-"""
-resolved_latencies = [qr.latency_ms for qr in query_results if qr.status == 'Resolved' and qr.latency_ms is not None]
+    """
+    Calculates min, max, median, and average latency for a given set of resolved queries.
+    Only considers queries with status 'Resolved' and non-null latency.
+    """
+    resolved_latencies = [qr.latency_ms for qr in query_results if qr.status == 'Resolved' and qr.latency_ms is not None]
 
-if not resolved_latencies:
+    if not resolved_latencies:
+        return PerformanceStats(
+            min_latency_ms=None,
+            max_latency_ms=None,
+            median_latency_ms=None,
+            avg_latency_ms=None
+        )
+
     return PerformanceStats(
-        min_latency_ms=None,
-        max_latency_ms=None,
-        median_latency_ms=None,
-        avg_latency_ms=None
+        min_latency_ms=min(resolved_latencies),
+        max_latency_ms=max(resolved_latencies),
+        median_latency_ms=statistics.median(resolved_latencies),
+        avg_latency_ms=statistics.mean(resolved_latencies)
     )
-
-return PerformanceStats(
-    min_latency_ms=min(resolved_latencies),
-    max_latency_ms=max(resolved_latencies),
-    median_latency_ms=statistics.median(resolved_latencies),
-    avg_latency_ms=statistics.mean(resolved_latencies)
-)
 def calculate_overall_blocking_percentage(query_results: List[QueryResult]) -> BlockingStats:
     """
     Calculates the overall percentage of 'Blocked' queries out of all non-'Error' queries,
@@ -107,5 +107,3 @@ def get_passed_useless_domains(query_results: List[QueryResult]) -> List[str]:
     """Retrieves a sorted list of unique 'Useless' domains that were 'Resolved'."""
     passed_useless = {qr.domain for qr in query_results if qr.domain_category == 'Useless' and qr.status == 'Resolved'}
     return sorted(list(passed_useless))
-passed_useless = {qr.domain for qr in query_results if qr.domain_category == 'Useless' and qr.status == 'Resolved'}
-return sorted(list(passed_useless))

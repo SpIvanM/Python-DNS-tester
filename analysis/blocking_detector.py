@@ -43,6 +43,4 @@ def detect_blocking(query_result: QueryResult,
         # to be public/routable AND not in the custom blocking IPs.
         query_result.status = 'Resolved'
 
-    return query_result
-
-return query_result
+        return query_result

@@ -2,7 +2,7 @@ import asyncio
 import time
 from typing import List, Dict
 
-from cli.cli_parser import parse_arguments
+from cli.cli_parser_new import parse_arguments
 from config.blocking_ips import load_blocking_ip_ranges, load_custom_blocking_ips
 from config.domain_loader import load_domains
 from config.resolver_loader import load_resolvers
