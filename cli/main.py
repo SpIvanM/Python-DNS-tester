@@ -1,7 +1,6 @@
 async def run_analysis(args: ParsedArguments):
-"""
-Main orchestration function that sets up, executes, analyzes, and reports DNS queries.
-"""
+#Main orchestration function that sets up, executes, analyzes, and reports DNS queries.
+
 print("DNS Analyzer: Starting analysis...")
 
 # 1. Load configurations
