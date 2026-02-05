@@ -1,3 +1,7 @@
+from typing import List, Dict, Optional
+from pathlib import Path
+from data.models import DomainConfig, DomainCategory
+
 def load_domains(initial_domains_raw: List[Dict[str, str]], additional_domains_path: Optional[str] = None, target_count: int = 100) -> List[DomainConfig]:
 """
 Loads and categorizes a list of 100 domain names, ensuring unique entries and categories.

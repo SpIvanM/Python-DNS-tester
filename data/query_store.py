@@ -1,3 +1,6 @@
+from typing import List, Dict
+from data.models import QueryResult
+
 class QueryStore:
 """
 In-memory repository for storing and retrieving QueryResult objects.

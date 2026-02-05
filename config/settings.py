@@ -1,3 +1,7 @@
+from typing import List
+from data.models import DomainCategory
+
+
 DEFAULT_OUTPUT_FILE = "dns_analysis_report.xlsx"
 DEFAULT_CONCURRENCY_LIMIT = 20
 DEFAULT_TIMEOUT_SECONDS = 5.0

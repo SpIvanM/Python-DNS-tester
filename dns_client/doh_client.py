@@ -1,3 +1,10 @@
+import asyncio
+import time
+import httpx
+from typing import List, Optional
+from data.models import QueryResult, DnsResolver, DomainCategory
+
+
 class DohClient:
 """
 Asynchronous DNS-over-HTTPS (DoH) client for querying DNS records.

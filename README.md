@@ -27,10 +27,16 @@ This tool empowers users to make informed decisions when selecting a DoH resolve
 
 ### Installation
 
-1.  **Save the Script:** Save the provided Python code as `dns_analyzer_script.py` in your desired directory.
+1.  **Clone or Download the Project:** Clone this repository or download the source code to your desired directory.
 
-2.  **Create Configuration Files:**
-    *   **`resolvers.txt` (Required):** Create a plain text file named `resolvers.txt` in the same directory as the script. Each line in this file should contain a valid DoH resolver URL.
+2.  **Install Dependencies:** Navigate to the project directory and run:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3.  **Create Configuration Files:**
+    *   **`resolvers.txt` (Required):** Create a plain text file named `resolvers.txt` in the project directory. Each line should contain a valid DoH resolver URL.
         Example `resolvers.txt`:
         ```
         https://1.1.1.1/dns-query
@@ -53,35 +59,43 @@ This tool empowers users to make informed decisions when selecting a DoH resolve
         8.8.4.4
         ```
 
-3.  **Install Dependencies:** Open your terminal or command prompt, navigate to the directory where you saved `dns_analyzer_script.py`, and run the following command to install the required Python packages:
-
-    ```bash
-    pip install httpx openpyxl
-    ```
-
 ### Usage
 
 Run the script from your terminal using Python.
 
 ```bash
-python dns_analyzer_script.py --resolvers resolvers.txt [OPTIONS]
-Command-Line Arguments
---resolvers <path/to/resolvers.txt> (Required): Path to the text file containing DoH resolver URLs.
---domains <path/to/domains.txt> (Optional): Path to a text file containing additional domain names (one per line). If not provided, a hardcoded list expanded to 100 domains is used.
---output <filename.xlsx> (Optional): Path for the output Excel report. Defaults to dns_analysis_report.xlsx.
---concurrency <number> (Optional): Maximum number of concurrent DoH queries. Defaults to 20.
---timeout <seconds> (Optional): Timeout in seconds for each individual DoH query. Defaults to 5.0 seconds.
---custom-blocking-ips <path/to/custom_blocking_ips.txt> (Optional): Path to a text file containing user-defined specific blocking IPv4 addresses (one per line).
-Example Commands
+python cli/main.py --resolvers resolvers.txt [OPTIONS]
+```
+
+#### Command-Line Arguments
+
+- `--resolvers <path/to/resolvers.txt>` (Required): Path to the text file containing DoH resolver URLs.
+- `--domains <path/to/domains.txt>` (Optional): Path to a text file containing additional domain names (one per line). If not provided, a hardcoded list expanded to 100 domains is used.
+- `--output <filename.xlsx>` (Optional): Path for the output Excel report. Defaults to `dns_analysis_report.xlsx`.
+- `--concurrency <number>` (Optional): Maximum number of concurrent DoH queries. Defaults to 20.
+- `--timeout <seconds>` (Optional): Timeout in seconds for each individual DoH query. Defaults to 5.0 seconds.
+- `--custom-blocking-ips <path/to/custom_blocking_ips.txt>` (Optional): Path to a text file containing user-defined specific blocking IPv4 addresses (one per line).
+
+#### Example Commands
+
 Basic run with default settings (using resolvers.txt):
 
-python dns_analyzer_script.py --resolvers resolvers.txt
+```bash
+python cli/main.py --resolvers resolvers.txt
+```
+
 Run with custom domain list and output file:
 
-python dns_analyzer_script.py --resolvers resolvers.txt --domains my_domains.txt --output custom_report.xlsx
+```bash
+python cli/main.py --resolvers resolvers.txt --domains my_domains.txt --output custom_report.xlsx
+```
+
 Run with increased concurrency and custom blocking IPs:
 
-python dns_analyzer_script.py --resolvers resolvers.txt --concurrency 50 --custom-blocking-ips my_block_ips.txt
-After execution, an Excel file (e.g., dns_analysis_report.xlsx) will be generated in the same directory, containing the comprehensive analysis.
+```bash
+python cli/main.py --resolvers resolvers.txt --concurrency 50 --custom-blocking-ips my_block_ips.txt
+```
+
+After execution, an Excel file (e.g., `dns_analysis_report.xlsx`) will be generated in the same directory, containing the comprehensive analysis.
 
 system_objective_fulfilled

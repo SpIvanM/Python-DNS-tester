@@ -1,3 +1,8 @@
+import statistics
+from typing import List, Dict, Optional
+from data.models import QueryResult, DomainCategory
+from analysis.models import PerformanceStats, BlockingStats, CategorizedBlockingStats
+
 def calculate_performance_stats(query_results: List[QueryResult]) -> PerformanceStats:
 """
 Calculates min, max, median, and average latency for a given set of resolved queries.

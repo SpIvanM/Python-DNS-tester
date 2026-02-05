@@ -1,10 +1,16 @@
+from typing import NamedTuple, Optional
+import argparse
+from config.settings import DEFAULT_OUTPUT_FILE, DEFAULT_CONCURRENCY_LIMIT, DEFAULT_TIMEOUT_SECONDS
+
+
 class ParsedArguments(NamedTuple):
-domain_list_path: Optional[str]
-resolver_list_path: str
-output_file: str
-concurrency_limit: int
-timeout_seconds: float
-custom_blocking_ips_path: Optional[str]
+    domain_list_path: Optional[str]
+    resolver_list_path: str
+    output_file: str
+    concurrency_limit: int
+    timeout_seconds: float
+    custom_blocking_ips_path: Optional[str]
+
 
 def parse_arguments() -> ParsedArguments:
 """

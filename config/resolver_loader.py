@@ -1,3 +1,8 @@
+import re
+from typing import List
+from data.models import DnsResolver
+
+
 def load_resolvers(file_path: str) -> List[DnsResolver]:
 """
 Loads and validates a list of DoH resolver URLs from a file.

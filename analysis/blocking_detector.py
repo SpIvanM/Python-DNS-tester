@@ -1,3 +1,7 @@
+from typing import List
+from data.models import QueryResult, BlockingIpRange
+from utils.ip_utils import is_private_or_non_routable_ipv4
+
 def detect_blocking(query_result: QueryResult,
 blocking_ip_ranges: List[BlockingIpRange],
 custom_blocking_ips: List[str]) -> QueryResult:
