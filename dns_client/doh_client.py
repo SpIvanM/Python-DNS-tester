@@ -1,18 +1,18 @@
 import asyncio
 import time
 import httpx
-from typing import List, Optional
-from data.models import QueryResult, DnsResolver, DomainCategory
+from typing import List, Optional, Tuple, Dict, Any
+from data.models import QueryResult, DnsResolver, DomainCategory, QueryStatus
 
 
 class DohClient:
-"""
-Asynchronous DNS-over-HTTPS (DoH) client for querying DNS records.
-"""
-def init(self):
-# httpx.AsyncClient should be reused for connection pooling and efficiency.
-# It handles session management internally.
-self._client = httpx.AsyncClient()
+    """
+    Asynchronous DNS-over-HTTPS (DoH) client for querying DNS records.
+    """
+    def __init__(self):
+        # httpx.AsyncClient should be reused for connection pooling and efficiency.
+        # It handles session management internally.
+        self._client = httpx.AsyncClient()
 
 async def query(self,
                 domain_name: str,

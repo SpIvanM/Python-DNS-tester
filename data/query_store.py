@@ -1,22 +1,23 @@
-from typing import List, Dict
-from data.models import QueryResult
+from typing import List, Dict, Optional
+from data.models import QueryResult, QueryStatus, DomainCategory
+
 
 class QueryStore:
-"""
-In-memory repository for storing and retrieving QueryResult objects.
-"""
-def init(self):
-self._results: List[QueryResult] = []
+    """
+    In-memory repository for storing and retrieving QueryResult objects.
+    """
+    def __init__(self):
+        self._results: List[QueryResult] = []
 
-def add_result(self, result: QueryResult):
-    """Adds a single QueryResult object to the store."""
-    self._results.append(result)
+    def add_result(self, result: QueryResult):
+        """Adds a single QueryResult object to the store."""
+        self._results.append(result)
 
-def get_results(self,
-                resolver_url: Optional[str] = None,
-                domain_name: Optional[str] = None,
-                status: Optional[QueryStatus] = None,
-                domain_category: Optional[DomainCategory] = None) -> List[QueryResult]:
+    def get_results(self,
+                    resolver_url: Optional[str] = None,
+                    domain_name: Optional[str] = None,
+                    status: Optional[QueryStatus] = None,
+                    domain_category: Optional[DomainCategory] = None) -> List[QueryResult]:
     """
     Retrieves filtered QueryResult objects from the store.
     Filters are applied cumulatively.
